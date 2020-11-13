@@ -2,12 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class HomePage extends Component {
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_MOVIE',
+    });
+  }
   render() {
     return (
       <div>
-        <p>HELLO</p>
+        <ul>
+          {this.props.reduxState.movies.map((movie) => {
+            return (
+              <li>
+                key={movie.id} movie={movie}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }
 }
-export default connect()(HomePage);
+const mapStateToProps = (reduxState) => ({
+  reduxState,
+});
+
+export default connect(mapStateToProps)(HomePage);
