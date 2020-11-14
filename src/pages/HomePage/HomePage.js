@@ -14,8 +14,8 @@ class HomePage extends Component {
   };
 
   render() {
-    const moviesArray = this.props.reduxState.movies.map((movie) => {
-      return <MovieItem key={movie.id} movie={movie} />;
+    const moviesArray = this.props.reduxState.movies.map((item, index) => {
+      return <MovieItem key={index} movies={item} />;
     });
     return (
       <div>
