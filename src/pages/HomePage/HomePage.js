@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MovieItem from '../../components/MovieItem/movieItem';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -9,21 +10,12 @@ class HomePage extends Component {
   }
 
   handlePosterClick = (event) => {
-    this.props.history.push('/details');
+    this.props.history.push('/details/');
   };
 
   render() {
-    const moviesArray = this.props.reduxState.movies.map((item, index) => {
-      return (
-        <div>
-          <div key={item.id}></div>
-          <div>{item.title}</div>
-          <div>
-            <img src={item.poster} onClick={this.handlePosterClick} />
-          </div>
-          <div>{item.description}</div>
-        </div>
-      );
+    const moviesArray = this.props.reduxState.movies.map((movie) => {
+      return <MovieItem key={movie.id} movie={movie} />;
     });
     return (
       <div>

@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) => {
   console.log(req.body);
   pool
-    .query(`SELECT * FROM "genres" ORDER BY "id";`)
+    .query(`SELECT * FROM "genres" ORDER BY "id"`)
     .then((result) => {
       res.send(result.rows);
     })
@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
       console.log('error in getting genres', error);
       res.sendStatus(500);
     });
-  res.sendStatus(500);
 });
 
 module.exports = router;

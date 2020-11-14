@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class AddMoviePage extends Component {
+  onCancel = (event) => {
+    this.props.history.push('/');
+  };
+
   render() {
     return (
       <div>
@@ -16,7 +20,8 @@ class AddMoviePage extends Component {
           <input type="text" placeholder="Genre" name="genre"></input>
         </div>
         <div>
-          <button>Add New Movie!</button>
+          <button>Save</button>
+          <button onClick={this.onCancel}>Cancel</button>
         </div>
       </div>
     );
