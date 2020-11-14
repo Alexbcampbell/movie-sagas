@@ -29,6 +29,7 @@ function* getMovies(action) {
     console.log(err);
   }
 }
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
