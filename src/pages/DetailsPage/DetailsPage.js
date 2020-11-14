@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class DetailsPage extends Component {
   componentDidMount() {
+    console.log(this.props.match.params.id);
     this.props.dispatch({
-      type: 'GET_GENRES',
+      type: 'GET_DETAILS',
+      payload: this.props.match.params.id,
     });
   }
 
@@ -36,4 +39,4 @@ const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapStateToProps)(DetailsPage);
+export default withRouter(connect(mapStateToProps)(DetailsPage));
