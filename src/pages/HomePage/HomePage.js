@@ -25,7 +25,6 @@ class HomePage extends Component {
         </div>
       );
     });
-    console.log(moviesArray);
     return (
       <div>
         <ul>{moviesArray}</ul>
