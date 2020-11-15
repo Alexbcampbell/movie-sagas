@@ -48,7 +48,7 @@ function* getDetails(action) {
 
 function* postNewMovie(action) {
   try {
-    const response = yield axios.post('/api/movie', action.payload);
+    yield axios.post('/api/movie', action.payload);
     console.log(response.data);
     yield put({
       type: 'GET_MOVIES',

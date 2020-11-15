@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 class DetailsPage extends Component {
   componentDidMount() {
@@ -29,7 +30,13 @@ class DetailsPage extends Component {
             <img src={movieDetails.poster} />
             <p>Description: {movieDetails.description}</p>
           </div>
-          <button onClick={this.onBackToList}>Back to List</button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.onBackToList}
+          >
+            Back to List
+          </Button>
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 class AddMoviePage extends Component {
   state = {
@@ -58,11 +59,38 @@ class AddMoviePage extends Component {
             name="description"
             onChange={this.handleInputChange('description')}
           ></input>
-          <input type="text" placeholder="Genre" name="genre"></input>
+          <select
+            value={this.state.input}
+            onChange={this.handleInputChange('genre_id')}
+          >
+            <option value="adventure">Adventure</option>
+            <option value="animated">Animated</option>
+            <option value="biographical">Biographical</option>
+            <option value="comedy">Comedy</option>
+            <option value="disaster">Disaster</option>
+            <option value="Drama">Drama</option>
+            <option value="epic">Epic</option>
+            <option value="fantasy">Fanstasy</option>
+            <option value="musical">Musical</option>
+            <option value="romantic">Romantic</option>
+            <option value="science fiction">Science Fiction</option>
+            <option value="space-opera">Space-Opera</option>
+            <option value="superhero">Superhero</option>
+          </select>
         </div>
         <div>
-          <button onClick={this.addNewMovie}>Save</button>
-          <button onClick={this.onCancel}>Cancel</button>
+          <Button
+            onClick={this.addNewMovie}
+            variant="contained"
+            color="primary"
+          >
+            Save
+          </Button>
+          <div>
+            <Button onClick={this.onCancel} variant="contained" color="primary">
+              Cancel
+            </Button>
+          </div>
         </div>
       </div>
     );
