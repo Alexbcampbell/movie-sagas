@@ -93,7 +93,11 @@ class AddMoviePage extends Component {
             >
               Save
             </Button>
-            <Button onClick={this.onCancel} variant="contained" color="primary">
+            <Button
+              onClick={this.onCancel}
+              variant="contained"
+              color="secondary"
+            >
               Cancel
             </Button>
           </div>
