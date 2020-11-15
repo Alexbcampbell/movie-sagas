@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Grid, TextField, Select, InputLabel } from '@material-ui/core';
 
 class AddMoviePage extends Component {
   componentDidMount() {
@@ -55,46 +55,49 @@ class AddMoviePage extends Component {
 
     return (
       <div>
-        <div>
-          <input
-            type="text"
-            placeholder="Movie Title"
-            name="title"
-            onChange={this.handleInputChange('title')}
-          ></input>
-          <input
-            type="text"
-            placeholder="Poster URL"
-            name="image"
-            onChange={this.handleInputChange('poster')}
-          ></input>
-          <input
-            type="text"
-            placeholder="Description"
-            name="description"
-            onChange={this.handleInputChange('description')}
-          ></input>
-          <select
-            value={this.state.input}
-            onChange={this.handleInputChange('genre_id')}
-          >
-            {selectGenre}
-          </select>
-        </div>
-        <div>
-          <Button
-            onClick={this.addNewMovie}
-            variant="contained"
-            color="primary"
-          >
-            Save
-          </Button>
+        <Grid container direction="column" justify="center" alignItems="center">
           <div>
+            <TextField
+              id="outlined-basic"
+              label="Movie Title"
+              variant="outlined"
+              onChange={this.handleInputChange('title')}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Poster URL"
+              variant="outlined"
+              onChange={this.handleInputChange('poster')}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Description"
+              variant="outlined"
+              onChange={this.handleInputChange('description')}
+            />
+            <InputLabel id="demo-simple-select-filled-label">Genre</InputLabel>
+            <Select
+              labelId="demo-simple-select-filled-label"
+              id="demo-simple-select-filled"
+              value={this.state.input}
+              onChange={this.handleInputChange('genre_id')}
+            >
+              {selectGenre}
+            </Select>
+          </div>
+          <div>
+            <Button
+              onClick={this.addNewMovie}
+              variant="contained"
+              color="primary"
+            >
+              Save
+            </Button>
             <Button onClick={this.onCancel} variant="contained" color="primary">
               Cancel
             </Button>
           </div>
-        </div>
+        </Grid>
       </div>
     );
   }

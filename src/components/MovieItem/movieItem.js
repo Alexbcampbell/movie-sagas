@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 class MovieItem extends Component {
   clickDetails = (event) => {
@@ -13,13 +14,22 @@ class MovieItem extends Component {
 
   render() {
     return (
-      <div>
-        <div key={this.props.movies.id}></div>
-        <div>{this.props.movies.title}</div>
-        <div>
-          <img src={this.props.movies.poster} onClick={this.clickDetails} />
-        </div>
-        <div>{this.props.movies.description}</div>
+      <div style={{ padding: 20 }}>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="flex-start"
+        >
+          <div key={this.props.movies.id}></div>
+          <div>
+            <strong>{this.props.movies.title}</strong>
+          </div>
+          <div>
+            <img src={this.props.movies.poster} onClick={this.clickDetails} />
+          </div>
+          <div>{this.props.movies.description}</div>
+        </Grid>
       </div>
     );
   }
