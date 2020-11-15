@@ -10,11 +10,12 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, take, takeLatest } from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeLatest('GET_MOVIES', getMovies);
+  yield takeLatest('GET_GENRES', getGenres);
   yield takeLatest('GET_DETAILS', getDetails);
   yield takeLatest('POST_MOVIE', postNewMovie);
 }
@@ -32,14 +33,30 @@ function* getMovies(action) {
   }
 }
 
+function* getGenres(action) {
+  try {
+    const response = yield axios.get(`/api/genre`);
+    console.log(response.data);
+    yield put({
+      type: 'SET_GENRES',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* getDetails(action) {
   console.log('HELLO');
   try {
-    const response = yield axios.get(`/api/genre/details/${action.payload}`);
+    const response = yield axios.get(
+      `/api/movieDetails/details/${action.payload}`
+    );
+    const dbResponse = yield axios.get(`/api/genre/details/${action.payload}`);
     console.log(response.data);
     yield put({
       type: 'SET_DETAILS',
-      payload: response.data,
+      payload: { ...response.data[0], genres: dbResponse.data },
     });
   } catch (err) {
     console.log(err);
@@ -48,7 +65,7 @@ function* getDetails(action) {
 
 function* postNewMovie(action) {
   try {
-    yield axios.post('/api/movie', action.payload);
+    const response = yield axios.post('/api/movie', action.payload);
     console.log(response.data);
     yield put({
       type: 'GET_MOVIES',
@@ -81,7 +98,7 @@ const genres = (state = [], action) => {
   }
 };
 
-const movieDetails = (state = {}, action) => {
+const movieDetails = (state = { genres: [] }, action) => {
   switch (action.type) {
     case 'SET_DETAILS':
       return action.payload;

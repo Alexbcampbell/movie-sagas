@@ -10,6 +10,10 @@ class DetailsPage extends Component {
       type: 'GET_DETAILS',
       payload: this.props.match.params.id,
     });
+    this.props.dispatch({
+      type: 'GET_GENRES',
+      payload: this.props.match.params.id,
+    });
   }
 
   onBackToList = (event) => {
@@ -18,6 +22,9 @@ class DetailsPage extends Component {
 
   render() {
     const { movieDetails } = this.props.reduxState;
+    const genreName = movieDetails.genres.map((item, index) => {
+      return <li key={index}>{item.name}</li>;
+    });
     return (
       <div>
         <div>
@@ -26,7 +33,7 @@ class DetailsPage extends Component {
           </div>
           <div>
             <p>Title: {movieDetails.title}</p>
-            <p>Genre: {movieDetails.name}</p>
+            <ul>Genre: {genreName}</ul>
             <img src={movieDetails.poster} />
             <p>Description: {movieDetails.description}</p>
           </div>
