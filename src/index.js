@@ -49,9 +49,11 @@ function* getGenres(action) {
 function* getDetails(action) {
   console.log('HELLO');
   try {
+    //gets movie details
     const response = yield axios.get(
       `/api/movieDetails/details/${action.payload}`
     );
+    //gets genre details
     const dbResponse = yield axios.get(`/api/genre/details/${action.payload}`);
     console.log(response.data);
     yield put({
@@ -63,6 +65,7 @@ function* getDetails(action) {
   }
 }
 
+//POST movies and genre info to database
 function* postNewMovie(action) {
   try {
     const response = yield axios.post('/api/movie', action.payload);
@@ -97,7 +100,7 @@ const genres = (state = [], action) => {
       return state;
   }
 };
-
+//Used to store all movie details
 const movieDetails = (state = { genres: [] }, action) => {
   switch (action.type) {
     case 'SET_DETAILS':

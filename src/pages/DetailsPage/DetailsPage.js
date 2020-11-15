@@ -5,11 +5,13 @@ import { Button } from '@material-ui/core';
 
 class DetailsPage extends Component {
   componentDidMount() {
+    //gets movie details
     console.log(this.props.match.params.id);
     this.props.dispatch({
       type: 'GET_DETAILS',
       payload: this.props.match.params.id,
     });
+    //gets all genres
     this.props.dispatch({
       type: 'GET_GENRES',
       payload: this.props.match.params.id,
@@ -17,10 +19,12 @@ class DetailsPage extends Component {
   }
 
   onBackToList = (event) => {
+    //back to home page
     this.props.history.push('/');
   };
 
   render() {
+    //join tables as an object that has all details for specific movie id
     const { movieDetails } = this.props.reduxState;
     const genreName = movieDetails.genres.map((item, index) => {
       return <li key={index}>{item.name}</li>;

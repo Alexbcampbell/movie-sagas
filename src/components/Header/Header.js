@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 class Header extends Component {
   render() {

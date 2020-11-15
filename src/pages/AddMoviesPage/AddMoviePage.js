@@ -22,7 +22,7 @@ class AddMoviePage extends Component {
       newMovie: { ...this.state.newMovie, [input]: event.target.value },
     });
   };
-
+  //Adds new movie to database via axios in index.js, sends response via dispatch
   addNewMovie = (event) => {
     event.preventDefault();
     this.props.dispatch({
@@ -46,6 +46,7 @@ class AddMoviePage extends Component {
   render() {
     const selectGenre = this.props.reduxState.genres.map((item, index) => {
       return (
+        //lists all genre options in dropdown menu, data sent to junction table
         <option key={index} value={item.id}>
           {item.name}
         </option>

@@ -10,10 +10,12 @@ class HomePage extends Component {
   }
 
   handlePosterClick = (event) => {
+    //on click of movie poster, user is brought to details page for specific movie
     this.props.history.push('/details/');
   };
 
   render() {
+    //list all movies on home page
     const moviesArray = this.props.reduxState.movies.map((item, index) => {
       return <MovieItem key={index} movies={item} />;
     });
