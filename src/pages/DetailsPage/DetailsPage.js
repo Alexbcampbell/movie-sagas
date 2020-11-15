@@ -16,19 +16,19 @@ class DetailsPage extends Component {
   };
 
   render() {
-    const genreArray = this.props.reduxState.genres.map((item, index) => {
-      return (
-        <div>
-          <div key={item.id}></div>
-          <div>{item.name}</div>
-        </div>
-      );
-    });
-
+    const { movieDetails } = this.props.reduxState;
     return (
       <div>
         <div>
-          <div {...genreArray}></div>
+          <div>
+            <h2>Movie Details</h2>
+          </div>
+          <div>
+            <p>Title: {movieDetails.title}</p>
+            <p>Genre: {movieDetails.name}</p>
+            <img src={movieDetails.poster} />
+            <p>Description: {movieDetails.description}</p>
+          </div>
           <button onClick={this.onBackToList}>Back to List</button>
         </div>
       </div>

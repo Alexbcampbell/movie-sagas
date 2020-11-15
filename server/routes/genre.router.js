@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       `SELECT * FROM "movies" 
     JOIN "movie_genres" ON "movies".id = "movie_genres".movie_id
     JOIN "genres" ON "movie_genres".genre_id = "genres".id
-    WHERE "movies".id = 1
+    WHERE "movies".id = $1
     `
     )
     .then((result) => {
