@@ -61,7 +61,7 @@ class AddMoviePage extends Component {
           <input type="text" placeholder="Genre" name="genre"></input>
         </div>
         <div>
-          <button>Save</button>
+          <button onClick={this.addNewMovie}>Save</button>
           <button onClick={this.onCancel}>Cancel</button>
         </div>
       </div>
