@@ -27,7 +27,11 @@ class DetailsPage extends Component {
     //join tables as an object that has all details for specific movie id
     const { movieDetails } = this.props.reduxState;
     const genreName = movieDetails.genres.map((item, index) => {
-      return <li key={index}>{item.name}</li>;
+      return (
+        <li className="genre-markers" key={index}>
+          {item.name}
+        </li>
+      );
     });
     return (
       <div>
@@ -37,7 +41,7 @@ class DetailsPage extends Component {
           </div>
           <div>
             <p>Title: {movieDetails.title}</p>
-            <ul>Genre: {genreName}</ul>
+            <ul>Genre(s): {genreName}</ul>
             <img src={movieDetails.poster} />
             <p>Description: {movieDetails.description}</p>
           </div>
